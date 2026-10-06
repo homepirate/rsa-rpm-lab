@@ -56,16 +56,13 @@ void rsa_decrypt(
     char *output
 )
 {
-    /*
-     * TODO:
-     * Дешифрование будет реализовано позже.
-     *
-     * Для расшифрования будет использоваться:
-     *
-     *     message = encrypted^RSA_D mod RSA_N
-     */
+    for (size_t i = 0; i < length; i++) {
+        uint64_t message = fast_mod_pow(
+            input[i],
+            RSA_D,
+            RSA_N
+        );
 
-    (void)input;
-    (void)length;
-    (void)output;
+        output[i] = (char)(unsigned char)message;
+    }
 }
